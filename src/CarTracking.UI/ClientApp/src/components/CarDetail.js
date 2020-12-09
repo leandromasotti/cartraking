@@ -25,6 +25,7 @@ export class CarDetail extends Component {
                     <h3>Patente: {car.licensePlateNumber} - Vehiculo: {car.brand} </h3>
                 
                     <p>Historial de servicios:</p>
+                    {/* 
                     <ul>
                         <li><strong>Kilometros actuales</strong> {car.lastServiceKilometers}</li>
                         <li><strong>Fecha</strong> {car.lastServiceDate}</li>
@@ -42,23 +43,7 @@ export class CarDetail extends Component {
                                 checked={car.oilFilter} />
                         </label></li>
                     </ul>
-                    <div>
-                <h4 className="d-none payment-detail-title">Historial de servicios</h4>
-                <div className="payment-detail">
-                    <div className="payment__inner-subtotal">
-                        <h4>Fecha</h4>
-                        <p>{car.lastServiceDate}</p>
-                    </div>
-                    <div className="payment__inner-shipping">
-                        <h4>Kilometros actuales</h4>
-                        <p>{car.lastServiceKilometers}</p>
-                    </div>
-                    <div className="payment__inner-subtotal">
-                        <h4>Aceite</h4>
-                                <p>$ {car.oilComments}</p>
-                    </div>
-                    </div>
-                    </div>
+                    */}
 
                     <table className="d-none-mobile payment_table-detail">
                         <thead>

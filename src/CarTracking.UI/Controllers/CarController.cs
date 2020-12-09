@@ -36,48 +36,51 @@ namespace CarTracking.UI.Controllers
         [HttpGet("[action]")]
         public Car Detail(string id)
         {
+            var service = new Services.ApiSheetService();
+            return service.GetData(id);
+
             //return new Car();
 
-            var car1 = new Car()
-            {
-                LicensePlateNumber = "KZT110",
-                Brand = "Peugeot",
-                Model = "206 generation plus 1.4",
-                Year = 2012,
-                Color = "Negro",
-            };
+            //var car1 = new Car()
+            //{
+            //    LicensePlateNumber = "KZT110",
+            //    Brand = "Peugeot",
+            //    Model = "206 generation plus 1.4",
+            //    Year = 2012,
+            //    Color = "Negro",
+            //};
 
-            CarService s2 = new CarService
-            {
-                Date = DateTime.Now.AddYears(-1).ToString("dd/MM/yyyy HH:mm:ss"),
-                Kilometers = 155000,
-                NextServiceKilometers = 165000,
-                OilComments = "YPF Elaion 15w 40",
-                OilFilter = true
-            };
+            //CarService s2 = new CarService
+            //{
+            //    Date = DateTime.Now.AddYears(-1).ToString("dd/MM/yyyy HH:mm:ss"),
+            //    Kilometers = 155000,
+            //    NextServiceKilometers = 165000,
+            //    OilComments = "YPF Elaion 15w 40",
+            //    OilFilter = true
+            //};
 
-            car1.Services.Add(s2);
+            //car1.Services.Add(s2);
 
-            CarService s = new CarService
-            {
-                Date = DateTime.Now.AddYears(-2).ToString("dd/MM/yyyy HH:mm:ss"),
-                Kilometers = 140000,
-                NextServiceKilometers = 150000,
-                OilComments = "YPF Elaion 15w 40",
-                OilFilter = true
-            };
+            //CarService s = new CarService
+            //{
+            //    Date = DateTime.Now.AddYears(-2).ToString("dd/MM/yyyy HH:mm:ss"),
+            //    Kilometers = 140000,
+            //    NextServiceKilometers = 150000,
+            //    OilComments = "YPF Elaion 15w 40",
+            //    OilFilter = true
+            //};
 
-            car1.Services.Add(s);
+            //car1.Services.Add(s);
 
-            if (id != "KZT110")
-            {
-                car1.LicensePlateNumber = "AB505023";
-                car1.Brand = "Renault";
-                car1.Model = "Kangoo 3 puertas";
-                car1.Year = 2018;
-            }
+            //if (id != "KZT110")
+            //{
+            //    car1.LicensePlateNumber = "AB505023";
+            //    car1.Brand = "Renault";
+            //    car1.Model = "Kangoo 3 puertas";
+            //    car1.Year = 2018;
+            //}
 
-            return car1;
+            //return car1;
         }
     }
 }

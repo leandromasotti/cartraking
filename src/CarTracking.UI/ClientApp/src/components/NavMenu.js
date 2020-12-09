@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import logo from './../assets/img/logo.png'
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -26,6 +27,7 @@ export class NavMenu extends Component {
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
+            {/*<img src={logo} alt={"logo"} width="30" height="30" />*/}
             <NavbarBrand tag={Link} to="/">Dolores Lubricantes</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
@@ -33,6 +35,7 @@ export class NavMenu extends Component {
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/">Inicio</NavLink>
                 </NavItem>
+                            {/*
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
                 </NavItem>
@@ -41,7 +44,9 @@ export class NavMenu extends Component {
                 </NavItem>
                 <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/car-detail">Car detail</NavLink>
-                </NavItem>
+                            </NavItem>
+                            */}
+
               </ul>
             </Collapse>
           </Container>
