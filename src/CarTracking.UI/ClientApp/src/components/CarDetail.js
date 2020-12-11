@@ -63,7 +63,10 @@ export class CarDetail extends Component {
                                             {serv.kilometers}
                                         </td>
                                         <td className="price payment_price">{serv.oilComments}</td>
-                                        <td className="totalAmount">{serv.oilFilter}</td>
+                                        <td className="totalAmount"><input
+                                            name="isGoing"
+                                            type="checkbox"
+                                            checked={serv.oilFilter} /></td>
                                     </tr>
                                 )
                             }
