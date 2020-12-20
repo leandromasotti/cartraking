@@ -45,13 +45,16 @@ export class CarDetail extends Component {
                     </ul>
                     */}
 
-                    <table className="d-none-mobile payment_table-detail">
+                    <table className="d-none-mobile table">
                         <thead>
                             <tr className="no-hover">
                                 <th>Fecha</th>
-                                <th>Kilometros actuales</th>
-                                <th>Aceite</th>
+                                <th>Kilometros actuales</th>                                
                                 <th>Filtro de Aceite</th>
+                                <th>Filtro de Aire</th>
+                                <th>Filtro de Combustible</th>
+                                <th>Filtro de Habitaculo</th>
+                                <th>Aceite</th>
                             </tr>
                         </thead>
                         <tbody className="payment_table-tbody">
@@ -62,11 +65,11 @@ export class CarDetail extends Component {
                                         <td className="input-number payment_input-number">
                                             {serv.kilometers}
                                         </td>
+                                        <td className="totalAmount"><input name="oilFilter" type="checkbox" checked={serv.oilFilter} /></td>
+                                        <td className="totalAmount"><input name="airFilter" type="checkbox" checked={serv.airFilter} /></td>
+                                        <td className="totalAmount"><input name="fuelFilter" type="checkbox" checked={serv.fuelFilter} /></td>
+                                        <td className="totalAmount"><input name="cabinFilter" type="checkbox" checked={serv.cabinFilter} /></td>
                                         <td className="price payment_price">{serv.oilComments}</td>
-                                        <td className="totalAmount"><input
-                                            name="isGoing"
-                                            type="checkbox"
-                                            checked={serv.oilFilter} /></td>
                                     </tr>
                                 )
                             }
