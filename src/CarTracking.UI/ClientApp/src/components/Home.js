@@ -49,7 +49,10 @@ export class Home extends Component {
                     <input type="text" value={this.state.value} onChange={this.handleChange} />
                 </label>
                 <input type="submit" value="Consultar" />
-            </form>
+              </form>
+              <br />
+              <h3>Nuestra ubicaci&oacute;n</h3>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d6429.561759238092!2d-57.687384576882486!3d-36.31762017546096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x95999e5c24926e15%3A0xaa5b419c41900d94!2sMoreno%20321%2C%20B7100%20Dolores%2C%20Provincia%20de%20Buenos%20Aires!3m2!1d-36.317628899999995!2d-57.6830072!5e0!3m2!1ses!2sar!4v1608559868499!5m2!1ses!2sar" width="100%" height="300" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe><br />
          </div>        
     );
   }

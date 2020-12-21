@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import './NavMenu.css';
-import logo from './../assets/img/logo.png'
+import logofacebook from './../assets/img/Facebook-Logo.jpg'
+import logoinstagram from './../assets/img/instagram-logo.png'
+import logowhatsapp from './../assets/img/whatsapp-logo.png'
+import './Footer.css';
 
 export class Footer extends Component {
     //static displayName = NavMenu.name;
@@ -15,23 +15,19 @@ export class Footer extends Component {
     render() {
         return (
             <footer>
-                <br />
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-top box-shadow mb-3 " light>
-                    <Container>
-                        {/*<img src={logo} alt={"logo"} width="30" height="30" />
-                        {/*<Collapse className="d-sm-inline-flex flex-sm-row-reverse" navbar>
-                            <ul className="navbar-nav flex-grow">*/}
-                                <div className="text-center">
-                                    <span>
-                                        © Dolores Lubricantes 2021 
-                                    </span>
-                                </div>
-                        {/*
-                            </ul>
-                        </Collapse>*/}
-                    </Container>
-                </Navbar>
-            </footer>            
-        );
+                <div id="layoutFooter">
+                    <p>
+                        <a href="https://www.facebook.com/Dolores-Lubricantes-2288399798114557/" target="_blank"><img src={logofacebook} alt={"logofacebook"} width="30px" height="30px" /></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/doloreslubricantes/" target="_blank"><img src={logoinstagram} alt={"logoinstagram"} width="30px" height="30px" /></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a href="https://api.whatsapp.com/send?phone=542245509775" target="_blank"><img src={logowhatsapp} alt={"logowhatsapp"} width="30px" height="30px" /></a>
+                        <br />
+                        
+                    </p>
+                    <p>
+                        Dolores Lubricantes Copyright  2021
+                    </p>
+                </div>
+            </footer>
+            );
     }
 }

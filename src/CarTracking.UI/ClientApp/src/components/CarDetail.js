@@ -26,26 +26,7 @@ export class CarDetail extends Component {
                     <h3>Patente: {car.licensePlateNumber} - Vehiculo: {car.brand} </h3>
                 
                     <p>Historial de servicios:</p>
-                    {/* 
-                    <ul>
-                        <li><strong>Kilometros actuales</strong> {car.lastServiceKilometers}</li>
-                        <li><strong>Fecha</strong> {car.lastServiceDate}</li>
-                        <li><strong>Próximo cambio sugerido</strong> {car.nextServiceKilometers}</li>
-                        <li><strong>Filtro de Aceite</strong> {car.oilFilter}</li>
-                        <li><strong>Filtro de Aire</strong> {car.oilComments}</li>
-                        <li><strong>Filtro de Combustible</strong> {car.oilComments}</li>
-                        <li><strong>Filtro de Habitaculo</strong> {car.oilComments}</li>
-                        <li><strong>Aceite</strong> {car.oilComments}</li> 
-                        <li> <label>
-                            Filtro de Aceite:
-                            <input
-                                name="isGoing"
-                                type="checkbox"
-                                checked={car.oilFilter} />
-                        </label></li>
-                    </ul>
-                    */}
-
+                    
                     <table className="d-none-mobile table">
                         <thead>
                             <tr className="no-hover">
@@ -83,7 +64,7 @@ export class CarDetail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <p><em>cargando...</em></p>
             : CarDetail.renderCardDetail(this.state.car, this.state.id);
 
         return (
@@ -91,6 +72,7 @@ export class CarDetail extends Component {
                 <img src={logo} alt={"logo"} width="100%" height="100%" /> 
                 <h1 id="tabelLabel" >Detalle de Servicios</h1>
                 {contents}
+                <br />
             </div>
         );
     }

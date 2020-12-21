@@ -1,0 +1,37 @@
+﻿footer > h4 {
+    margin-left: 0.5rem;
+    font-size: 1.25rem;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    /*background-color: #1890ff;*/
+    box-shadow: 0 -1px 4px #A8A8A8;
+}
+
+logo {
+    padding: 5px;
+}
+
+#layoutFooter {
+    height: 56px;    
+    text-align: center;
+}
+
+    #layoutFooter p {
+        padding-top: 10px;
+        padding: 1rem 0.5rem;
+        /*color: #BCBA9E;*/
+    }
+
+    #layoutFooter a {
+        /*color: #BCBA9E;
+        */ text-decoration: underline;
+    }
+
+        #layoutFooter a:hover {
+            /*color: #BCBA9E;
+            */ text-decoration: none;
+        }
