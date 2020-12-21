@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import './Home.css';
+import logo from './../assets/img/logo2.jpeg'
 
 export class CarDetail extends Component {
     static displayName = CarDetail.name;
@@ -87,6 +88,7 @@ export class CarDetail extends Component {
 
         return (
             <div>
+                <img src={logo} alt={"logo"} width="100%" height="100%" /> 
                 <h1 id="tabelLabel" >Detalle de Servicios</h1>
                 {contents}
             </div>
