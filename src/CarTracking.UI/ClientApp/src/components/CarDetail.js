@@ -42,7 +42,7 @@ export class CarDetail extends Component {
                         <tbody className="payment_table-tbody">
                             {
                                 car.services.map(serv =>
-                                    <tr className="no-hover">
+                                    <tr key={serv.date} className="no-hover">
                                         <td className="payment_product-name">{serv.date}</td>
                                         <td className="input-number payment_input-number">
                                             {serv.kilometers}

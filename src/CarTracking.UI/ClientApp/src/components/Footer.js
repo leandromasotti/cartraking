@@ -24,7 +24,7 @@ export class Footer extends Component {
                         
                     </p>
                     <p>
-                        Dolores Lubricantes Copyright  2021
+                        © 2021 Dolores Lubricantes Todos los derechos reservados.
                     </p>
                 </div>
             </footer>
