@@ -36,7 +36,7 @@ Se necesita Node 20.9 o superior.
 | `/patente/AB123CD` | cliente | Historial + proximo cambio |
 | `/api/patente/AB123CD` | integraciones | Los mismos datos en JSON |
 | `/admin` | taller | Panel para generar el ticket **(pide clave)** |
-| `/admin/ticket/AB123CD` | taller | Ticket termico con QR (`?ancho=58` o `80`) **(pide clave)** |
+| `/admin/ticket/AB123CD` | taller | Ticket o sticker con QR (`?formato=58`, `80` o `sticker`) **(pide clave)** |
 
 Todo lo que ve el cliente es publico y de **solo lectura**: la aplicacion no
 tiene ningun camino de escritura sobre la planilla. Lo unico protegido por

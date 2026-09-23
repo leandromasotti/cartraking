@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { BuscadorDePatente } from '@/components/BuscadorDePatente';
-import { ANCHO_POR_DEFECTO } from '@/lib/ticket';
+import { FORMATO_POR_DEFECTO } from '@/lib/ticket';
 
 export const metadata: Metadata = {
   title: 'Panel del local',
@@ -39,7 +39,7 @@ export default function PanelDelLocal() {
           autoFocus
           textoBoton="Generar ticket"
           rutaBase="/admin/ticket"
-          parametros={`ancho=${ANCHO_POR_DEFECTO}`}
+          parametros={`formato=${FORMATO_POR_DEFECTO}`}
         />
       </section>
 

@@ -6,7 +6,7 @@ export default defineConfig({
   test: {
     include: ['src/**/*.test.ts'],
     // legacy/ tiene el proyecto .NET + CRA viejo: no se testea ni se compila.
-    exclude: ['node_modules/**', 'legacy/**', '.next/**'],
+    exclude: ['node_modules/**', 'legacy/**', '.next/**', '.next-build/**'],
   },
   resolve: {
     alias: {

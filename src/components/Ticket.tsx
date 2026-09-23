@@ -4,9 +4,7 @@ import type { ProximoServicio } from '@/lib/mantenimiento';
 import { INTERVALO_KM, INTERVALO_MESES } from '@/lib/mantenimiento';
 import { formatearPatente } from '@/lib/patente';
 import type { Servicio } from '@/lib/sheets';
-import type { ANCHOS_DE_PAPEL } from '@/lib/ticket';
-
-type Medidas = (typeof ANCHOS_DE_PAPEL)[keyof typeof ANCHOS_DE_PAPEL];
+import type { Medidas } from '@/lib/ticket';
 
 interface Props {
   patente: string;

@@ -56,7 +56,7 @@ src/
     patente.ts                 normalizacion de patentes         (puro)
     formato.ts                 fechas y numeros es-AR            (puro)
     qr.ts                      generacion del QR                 (servidor)
-    ticket.ts                  medidas del papel termico         (puro)
+    ticket.ts                  formatos de impresion             (puro)
     admin.ts                   clave y sesion del local          (puro)
     config.ts                  entorno y datos del local
 docs/                          documentacion detallada
@@ -108,8 +108,14 @@ del ticket. Se disena para 360 px de ancho y despues se agranda.
 
 ## Comandos
 
+En Windows, `next dev` mantiene tomado `.next` y un `next build` en paralelo
+falla con `EPERM`. Para eso estan `build:solo` y `start:solo`, que escriben en
+`.next-build`. Vercel nunca define `NEXT_DIST_DIR`, asi que en produccion se
+usa `.next` como siempre.
+
 ```bash
 npm run dev         # servidor de desarrollo en http://localhost:3000
+npm run build:solo  # build sin frenar el dev (usa .next-build)
 npm run build       # build de produccion
 npm test            # tests de la logica de dominio
 npm run typecheck   # tsc --noEmit

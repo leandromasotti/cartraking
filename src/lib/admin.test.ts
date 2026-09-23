@@ -11,7 +11,7 @@ afterEach(() => {
 
 describe('destinoSeguro', () => {
   it('acepta rutas internas del area administrativa', () => {
-    expect(destinoSeguro('/admin/ticket/AB123CD?ancho=58')).toBe('/admin/ticket/AB123CD?ancho=58');
+    expect(destinoSeguro('/admin/ticket/AB123CD?formato=sticker')).toBe('/admin/ticket/AB123CD?formato=sticker');
   });
 
   it('rechaza rutas fuera de /admin', () => {

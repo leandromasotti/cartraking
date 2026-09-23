@@ -104,27 +104,66 @@ Las dos que mas importan:
 
 ## Ancho de papel
 
-La pagina soporta los dos rollos estandar. Se elige con los botones o con el
-parametro `?ancho=`:
+La pagina soporta tres formatos. Se eligen con los botones o con el parametro
+`?formato=`:
 
-| Rollo | Area util | QR impreso | URL |
-| --- | --- | --- | --- |
-| 58 mm | 48 mm | 34 mm | `/admin/ticket/AB123CD?ancho=58` |
-| 80 mm | 72 mm | 46 mm | `/admin/ticket/AB123CD?ancho=80` |
+| Formato | Papel | Area util | QR | URL |
+| --- | --- | --- | --- | --- |
+| Ticket 58 | 58 mm, alto libre | 48 mm | 34 mm | `?formato=58` |
+| Ticket 80 | 80 mm, alto libre | 72 mm | 46 mm | `?formato=80` |
+| Sticker | 80 x 60 mm fijo | 72 mm | 30 mm | `?formato=sticker` |
+
+Por ejemplo: `/admin/ticket/AB123CD?formato=sticker`.
 
 El area util es menor que el papel porque el cabezal no imprime hasta el borde.
 Las medidas estan en `src/lib/ticket.ts`; si la impresora del local imprime un
 area distinta, se cambian ahi y todo el ticket se reacomoda solo.
 
-El ancho por defecto es **80 mm**. Para cambiarlo, `ANCHO_POR_DEFECTO` en el
-mismo archivo.
+El formato por defecto es **Ticket 80 mm**. Para cambiarlo,
+`FORMATO_POR_DEFECTO` en el mismo archivo.
+
+## El sticker autoadhesivo
+
+Etiqueta de 80 x 60 mm para pegar en la libreta de servicio del cliente. A
+diferencia del ticket lleva solo lo que sirve despues: patente, vehiculo,
+cuando volver, el telefono para turnos y el QR. El detalle del servicio que se
+acaba de hacer va en el ticket.
+
+El alto es **fijo**, porque la etiqueta ya viene cortada y no se puede estirar:
+el `@page` sale `80mm 60mm` en vez de `80mm auto`. El layout es de dos
+columnas (datos a la izquierda, QR a la derecha) porque apilado no entra.
+
+### Que rollo comprar
+
+**Rollo continuo autoadhesivo**, no etiquetas troqueladas. Las troqueladas
+necesitan sensor de gap o de marca negra para saber donde termina cada
+etiqueta, y las impresoras de tickets POS normalmente no lo tienen: imprimirian
+encima de los cortes. Eso es de impresoras de etiquetas.
+
+**Cuidado con la cortadora automatica.** El pegamento del adhesivo engoma la
+guillotina hasta trabarla, y varios fabricantes lo desaconsejan de forma
+explicita. Si la impresora tiene cutter, conviene desactivarlo y cortar con la
+barra dentada.
+
+### Duracion
+
+El papel termico se desvanece con **calor y sol**: el negro es un revelado
+quimico por temperatura. Un auto estacionado al sol pasa los 60 grados adentro
+y el sticker se borra en semanas o pocos meses, con el QR volviendose
+ilegible.
+
+Por eso este sticker esta pensado para la **libreta de servicio**, donde no hay
+sol ni calor y el termico aguanta sin problema hasta el proximo cambio. Si
+alguna vez se quiere pegar en el parabrisas, hay que usar papel termico
+*topcoated* con capa protectora, y asumir que el QR puede degradarse: ahi el
+kilometraje y la fecha en letra grande son lo que tiene que sobrevivir.
 
 ## Impresion en un click
 
 Agregando `?auto=1` el dialogo de impresion se abre solo al cargar la pagina:
 
 ```
-/admin/ticket/AB123CD?ancho=58&auto=1
+/admin/ticket/AB123CD?formato=sticker&auto=1
 ```
 
 Sirve para dejar un acceso directo en el escritorio de la PC del mostrador.
@@ -159,14 +198,18 @@ bordes al escalar y la termica convierte ese gris en ruido.
 
 **El QR no lo lee el celular.** Casi siempre es escala o margenes. Verifica que
 el dialogo tenga Margenes "Ninguno" y Escala 100%. Si el rollo es de 58 mm,
-confirma que estes usando `?ancho=58` y no el de 80.
+confirma que estes usando `?formato=58` y no el de 80.
 
 **Sale una hoja en blanco al final.** El `@page` tiene `margin: 0`, pero algunos
 drivers agregan su propio margen. En las propiedades de la impresora, en
 Windows, poni el tamano de papel en el rollo correcto (58 x 297 mm o similar).
 
 **El ticket sale cortado a lo ancho.** El area util configurada es mayor que la
-real de esa impresora. Bajala en `ANCHOS_DE_PAPEL` en `src/lib/ticket.ts`.
+real de esa impresora. Bajala en `FORMATOS` en `src/lib/ticket.ts`.
+
+**El sticker sale corrido o partido en dos etiquetas.** El alto configurado no
+coincide con el de la etiqueta real. Ajusta `altoMm` del formato `sticker` en
+`src/lib/ticket.ts`.
 
 **Sale todo muy chico.** Escala distinta de 100%, o el navegador quedo en
 "Ajustar al area de impresion".
