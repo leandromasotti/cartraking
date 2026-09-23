@@ -43,10 +43,14 @@ export const LOCAL = {
   /** Como se muestra el numero internacional, ya sin el 0 del prefijo local. */
   telefonoWhatsApp: '+54 2245 50-9775',
   email: 'lubricentrodolores@gmail.com',
-  direccion: 'Moreno 321, B7100 Dolores, Buenos Aires',
+  direccion: 'Moreno 305, B7100 Dolores, Buenos Aires',
   facebook: 'https://www.facebook.com/Dolores-Lubricantes-2288399798114557/',
   instagram: 'https://www.instagram.com/doloreslubricantes/',
-  mapa: 'https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d6429.561759238092!2d-57.687384576882486!3d-36.31762017546096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x95999e5c24926e15%3A0xaa5b419c41900d94!2sMoreno%20321%2C%20B7100%20Dolores%2C%20Provincia%20de%20Buenos%20Aires!3m2!1d-36.317628899999995!2d-57.6830072!5e0!3m2!1ses!2sar!4v1608559868499!5m2!1ses!2sar',
+  // Embed por consulta en vez del parametro `pb` codificado de Google: ese
+  // blob no se puede editar a mano y quedaba apuntando a la direccion vieja.
+  mapa: 'https://maps.google.com/maps?q=Dolores+Lubricantes,+Moreno+305,+Dolores,+Buenos+Aires&z=17&output=embed',
+  /** Abre la ficha del local en la app de mapas, para tocar "Como llegar". */
+  comoLlegar: 'https://www.google.com/maps/dir/?api=1&destination=-36.3175747,-57.6828817',
 } as const;
 
 export function linkWhatsApp(mensaje?: string): string {

@@ -1,7 +1,7 @@
 # Dolores Lubricantes
 
 Consulta de cambios de aceite y filtros para el lubricentro **Dolores
-Lubricantes** (Moreno 321, Dolores, Provincia de Buenos Aires).
+Lubricantes** (Moreno 305, Dolores, Provincia de Buenos Aires).
 
 El cliente pone la patente de su auto y ve el historial completo de servicios
 del taller, mas la fecha y el kilometraje en los que le toca el proximo cambio.

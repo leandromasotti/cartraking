@@ -103,15 +103,23 @@ export default function Inicio() {
           </ul>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-carbon-700">
+        <div className="flex flex-col overflow-hidden rounded-2xl border border-carbon-700">
           <h2 className="sr-only">Nuestra ubicacion</h2>
           <iframe
             src={LOCAL.mapa}
             title={`Ubicacion de ${LOCAL.nombre}`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="h-64 w-full border-0 sm:h-full sm:min-h-[20rem]"
+            className="h-64 w-full flex-1 border-0 sm:min-h-[18rem]"
           />
+          <a
+            href={LOCAL.comoLlegar}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-t border-carbon-700 bg-carbon-900/70 px-4 py-3 text-center text-sm font-semibold text-carbon-200 transition hover:text-white"
+          >
+            Como llegar
+          </a>
         </div>
       </section>
     </div>
