@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+
+/* Paleta tomada del cartel del local: negro, rojo y celeste. */
+@theme {
+  --color-carbon-950: #07090c;
+  --color-carbon-900: #0b0e13;
+  --color-carbon-800: #141920;
+  --color-carbon-700: #1e242d;
+  --color-carbon-600: #2b323d;
+  --color-carbon-400: #6b7583;
+  --color-carbon-200: #c3c9d2;
+
+  --color-marca-rojo: #e11d2e;
+  --color-marca-rojo-claro: #ff4757;
+  --color-marca-azul: #1b9de8;
+  --color-marca-azul-claro: #55c1ff;
+
+  --color-estado-ok: #22c55e;
+  --color-estado-aviso: #f59e0b;
+  --color-estado-mal: #ef4444;
+
+  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-carbon-950);
+  color: white;
+  /* Suave degrade de marca detras del contenido */
+  background-image:
+    radial-gradient(60rem 30rem at 15% -10%, rgb(225 29 46 / 0.16), transparent 60%),
+    radial-gradient(55rem 28rem at 90% 0%, rgb(27 157 232 / 0.16), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Foco visible y consistente para navegacion por teclado. */
+:where(a, button, input, select, summary):focus-visible {
+  outline: 2px solid var(--color-marca-azul-claro);
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* --------------------------------------------------------------------------
+   Impresion termica
+   --------------------------------------------------------------------------
+   El ticket se imprime desde el navegador contra una termica de 58 u 80 mm
+   instalada como impresora comun de Windows/Android. Las reglas de abajo
+   valen para cualquier impresion; el ancho de papel lo define la propia
+   pagina del ticket con su @page.
+   -------------------------------------------------------------------------- */
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    background-image: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Todo lo que solo sirve en pantalla desaparece en el papel. */
+  .no-imprimir {
+    display: none !important;
+  }
+
+  /* La termica es monocromo: nada de fondos ni sombras que salen grises. */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

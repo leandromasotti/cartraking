@@ -1,0 +1,31 @@
+# dependencias
+/node_modules
+/.pnp
+.pnp.*
+
+# build
+/.next/
+/out/
+/build
+next-env.d.ts
+
+# entorno
+.env
+.env.local
+.env*.local
+
+# vercel / typescript
+.vercel
+*.tsbuildinfo
+
+# sistema operativo y editores
+.DS_Store
+Thumbs.db
+*.suo
+*.user
+.vs/
+
+# logs
+npm-debug.log*
+yarn-error.log*
+debug.log
