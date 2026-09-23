@@ -64,6 +64,27 @@ El flujo:
    ir, para volver ahi despues de entrar.
 3. El formulario postea a `/api/admin/ingresar`, que compara la clave y, si
    coincide, deja una cookie de sesion.
+4. **Ademas, cada pagina de `/admin` vuelve a verificar la sesion del lado del
+   servidor** con `exigirSesionAdmin()` (`src/lib/sesion-admin.ts`).
+
+## Por que la verificacion esta duplicada
+
+Next acumula un historial de vulnerabilidades de *middleware bypass*:
+peticiones fabricadas que llegan a la pagina sin pasar por el middleware
+(GHSA-492v-c6pp-mqqv, GHSA-267c-6grr-h53f, GHSA-26hh-7cqf-hhc6, entre otras).
+La recomendacion del propio equipo de Next despues de esos casos es no apoyar
+la autorizacion unicamente ahi.
+
+Asi que el middleware es la capa que da la redireccion prolija, y el chequeo
+dentro de la pagina es el que de verdad decide. Esta verificado: con el
+middleware desactivado a proposito, `/admin` y `/admin/ticket/...` siguen sin
+entregar contenido a quien no tiene sesion.
+
+Un detalle de como se ve eso: `/admin/ticket/...` tiene `loading.tsx`, asi que
+Next envia la carcasa de carga con un 200 antes de que el guard resuelva, y el
+redirect viaja dentro del stream en vez de como cabecera `307`. El navegador lo
+sigue igual y **no se emite nada del ticket**; en produccion, ademas, el
+middleware corta antes con un 307 limpio.
 
 Detalles que importan:
 

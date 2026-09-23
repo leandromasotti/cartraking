@@ -8,6 +8,7 @@ import { LOCAL } from '@/lib/config';
 import { calcularProximoServicio } from '@/lib/mantenimiento';
 import { formatearPatente, normalizarPatente } from '@/lib/patente';
 import { generarQrDeLaPatente, urlDelDetalle } from '@/lib/qr';
+import { exigirSesionAdmin } from '@/lib/sesion-admin';
 import { obtenerVehiculo } from '@/lib/sheets';
 import { FORMATOS, FORMATOS_DISPONIBLES, formatoDesdeParametro } from '@/lib/ticket';
 
@@ -27,6 +28,11 @@ export default async function PaginaDeImpresion({ params, searchParams }: Props)
   const [{ patente: patenteCruda }, filtros] = await Promise.all([params, searchParams]);
 
   const patente = normalizarPatente(decodeURIComponent(patenteCruda));
+
+  // No alcanza con el middleware: ver src/lib/sesion-admin.ts
+  await exigirSesionAdmin(
+    `/admin/ticket/${patente}${filtros.formato ? `?formato=${filtros.formato}` : ''}`,
+  );
   const formato = formatoDesdeParametro(filtros.formato);
   const medidas = FORMATOS[formato];
 

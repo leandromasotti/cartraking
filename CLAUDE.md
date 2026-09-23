@@ -86,8 +86,9 @@ la API. Si agregas un campo nuevo, revisa que no la arrastre.
 
 **Todo lo administrativo va bajo `/admin`.** El sitio publico es de solo
 lectura y no debe enlazar a `/admin` desde ningun lado. Si agregas una pantalla
-para el local, va bajo `/admin` y el middleware la protege sola. Ver
-`docs/ACCESO.md`.
+para el local, va bajo `/admin` **y ademas empieza con
+`await exigirSesionAdmin('<su ruta>')`**: el middleware solo no alcanza, porque
+Next tuvo varias vulnerabilidades de bypass. Ver `docs/ACCESO.md`.
 
 **Las paginas que consultan la planilla llevan `loading.tsx`.** La primera
 consulta de una patente baja ~2,5 MB y tarda unos segundos; sin esqueleto la

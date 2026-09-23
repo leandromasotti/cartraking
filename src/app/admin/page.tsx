@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { BuscadorDePatente } from '@/components/BuscadorDePatente';
+import { exigirSesionAdmin } from '@/lib/sesion-admin';
 import { FORMATO_POR_DEFECTO } from '@/lib/ticket';
 
 export const metadata: Metadata = {
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
  * Pantalla de mostrador. Vive detras de la clave del local: es la unica
  * parte del sistema que no es publica.
  */
-export default function PanelDelLocal() {
+export default async function PanelDelLocal() {
+  // No alcanza con el middleware: ver src/lib/sesion-admin.ts
+  await exigirSesionAdmin('/admin');
+
   return (
     <div className="space-y-8">
       <header className="flex flex-wrap items-start justify-between gap-4">
