@@ -10,8 +10,11 @@ interface Props {
   /** Texto del boton. En el detalle conviene "Buscar otra". */
   textoBoton?: string;
   autoFocus?: boolean;
-  /** Seccion a la que se navega. El panel del local apunta a /imprimir. */
-  rutaBase?: '/patente' | '/imprimir';
+  /**
+   * Seccion a la que se navega. El sitio publico lleva al detalle de la
+   * patente; el panel del local, al ticket para imprimir.
+   */
+  rutaBase?: '/patente' | '/admin/ticket';
   /** Query string a agregar al destino, sin el "?". */
   parametros?: string;
 }

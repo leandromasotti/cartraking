@@ -32,11 +32,15 @@ Se necesita Node 20.9 o superior.
 
 | Ruta | Para quien | Que muestra |
 | --- | --- | --- |
-| `/` | cliente | Buscador de patente, contacto, ubicacion |
+| `/` | cliente | Buscador de patente, pedir turno, contacto, ubicacion |
 | `/patente/AB123CD` | cliente | Historial + proximo cambio |
-| `/imprimir` | taller | Panel para generar el ticket |
-| `/imprimir/AB123CD` | taller | Ticket termico con QR (`?ancho=58` o `80`) |
 | `/api/patente/AB123CD` | integraciones | Los mismos datos en JSON |
+| `/admin` | taller | Panel para generar el ticket **(pide clave)** |
+| `/admin/ticket/AB123CD` | taller | Ticket termico con QR (`?ancho=58` o `80`) **(pide clave)** |
+
+Todo lo que ve el cliente es publico y de **solo lectura**: la aplicacion no
+tiene ningun camino de escritura sobre la planilla. Lo unico protegido por
+clave es el panel del local. Ver [docs/ACCESO.md](docs/ACCESO.md).
 
 ## Comandos
 
@@ -54,6 +58,7 @@ npm run lint        # eslint
 | --- | --- |
 | [CLAUDE.md](CLAUDE.md) | Convenciones del repo, para trabajar con Claude Code |
 | [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) | Como esta armado y por que, incluido el cacheo |
+| [docs/ACCESO.md](docs/ACCESO.md) | Que ve el cliente, que ve el local y como funciona la clave |
 | [docs/DATOS.md](docs/DATOS.md) | La Google Sheet: estructura, volumen y su suciedad |
 | [docs/IMPRESION-TERMICA.md](docs/IMPRESION-TERMICA.md) | Configurar la impresora y resolver problemas |
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Deploy en Vercel y variables de entorno |

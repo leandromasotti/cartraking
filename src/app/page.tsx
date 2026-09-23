@@ -48,6 +48,21 @@ export default function Inicio() {
         </Tarjeta>
       </section>
 
+      <section className="rounded-2xl border border-marca-azul/40 bg-marca-azul/10 p-5 sm:p-8">
+        <h2 className="text-xl font-bold sm:text-2xl">Pedir un turno</h2>
+        <p className="mt-2 max-w-prose text-sm text-carbon-200 sm:text-base">
+          Escribinos por WhatsApp y coordinamos el dia y el horario para tu cambio de aceite.
+        </p>
+        <a
+          href={linkWhatsApp('Hola! Quiero sacar un turno para un cambio de aceite.')}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-block rounded-xl bg-marca-azul px-6 py-3 text-base font-bold transition hover:bg-marca-azul-claro"
+        >
+          Pedir turno por WhatsApp
+        </a>
+      </section>
+
       <section className="grid gap-6 lg:grid-cols-2">
         <div className="rounded-2xl border border-carbon-700 bg-carbon-900/70 p-5 sm:p-6">
           <h2 className="text-xl font-bold">Contacto</h2>

@@ -39,6 +39,13 @@ En **Settings > Environment Variables**, para Production, Preview y Development:
 | `GOOGLE_SHEET_RANGE` | no | por defecto `Respuestas de formulario 5!A:J` |
 | `SHEET_CACHE_TTL_SECONDS` | no | por defecto `300` |
 | `NEXT_PUBLIC_SITE_URL` | recomendada | la URL publica final |
+| `CLAVE_ADMIN` | **si** | clave del panel del local |
+
+Sobre `CLAVE_ADMIN`: es la unica clave del area administrativa, compartida por
+el personal. **Si no la cargas, `/admin` queda cerrado para todos** (el sistema
+nunca queda abierto por omision). Usa una clave larga: no hay limite de
+intentos. Cambiarla cierra todas las sesiones abiertas, que es la forma de
+sacarle el acceso a alguien que dejo el local.
 
 `NEXT_PUBLIC_SITE_URL` es la que define **que URL codifica el QR**. Si la
 dejas vacia, se deduce de `VERCEL_PROJECT_PRODUCTION_URL`, que funciona pero te

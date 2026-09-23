@@ -46,9 +46,18 @@ export default async function PaginaDeImpresion({ params, searchParams }: Props)
       <style>{`@page { size: ${medidas.papelMm}mm auto; margin: 0; }`}</style>
 
       <div className="no-imprimir mb-6 space-y-4">
-        <Link href={`/patente/${patente}`} className="text-sm text-carbon-400 hover:text-white">
-          &larr; Volver al detalle de {formatearPatente(patente)}
-        </Link>
+        <div className="flex flex-wrap gap-4 text-sm">
+          <Link href="/admin" className="text-carbon-400 hover:text-white">
+            &larr; Volver al panel
+          </Link>
+          <Link
+            href={`/patente/${patente}`}
+            className="text-carbon-400 hover:text-white"
+            target="_blank"
+          >
+            Ver la pagina publica de {formatearPatente(patente)}
+          </Link>
+        </div>
 
         <div>
           <h1 className="text-2xl font-bold">Ticket para impresora termica</h1>
@@ -66,7 +75,7 @@ export default async function PaginaDeImpresion({ params, searchParams }: Props)
               (opcion) => (
                 <Link
                   key={opcion}
-                  href={`/imprimir/${patente}?ancho=${opcion}`}
+                  href={`/admin/ticket/${patente}?ancho=${opcion}`}
                   aria-current={Number(opcion) === ancho ? 'page' : undefined}
                   className={`px-4 py-3 text-sm font-semibold transition ${
                     Number(opcion) === ancho

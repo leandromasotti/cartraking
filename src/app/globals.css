@@ -45,6 +45,84 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   Esqueletos de carga
+   --------------------------------------------------------------------------
+   La primera consulta de una patente tiene que bajar la planilla entera de
+   Google (~2,5 MB), asi que puede tardar unos segundos. En vez de dejar la
+   pantalla en blanco se muestra un esqueleto con la forma del contenido real,
+   que ademas evita que la pagina salte cuando llegan los datos.
+   -------------------------------------------------------------------------- */
+.esqueleto {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-carbon-800);
+  border-radius: 0.5rem;
+}
+
+.esqueleto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.07) 50%,
+    transparent
+  );
+  animation: esqueleto-brillo 1.6s infinite;
+}
+
+@keyframes esqueleto-brillo {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Barra de progreso indeterminada del encabezado de carga. */
+.barra-progreso {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-carbon-800);
+}
+
+.barra-progreso::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inline-size: 40%;
+  border-radius: 9999px;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-marca-rojo),
+    var(--color-marca-azul)
+  );
+  animation: barra-avance 1.4s ease-in-out infinite;
+}
+
+@keyframes barra-avance {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+/* Quien pidio menos movimiento ve el esqueleto quieto, no parpadeando. */
+@media (prefers-reduced-motion: reduce) {
+  .esqueleto::after,
+  .barra-progreso::after {
+    animation: none;
+  }
+
+  .barra-progreso::after {
+    inline-size: 100%;
+    opacity: 0.4;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Impresion termica
    --------------------------------------------------------------------------
    El ticket se imprime desde el navegador contra una termica de 58 u 80 mm

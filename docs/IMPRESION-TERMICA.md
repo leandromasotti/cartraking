@@ -10,7 +10,7 @@ ni comandos ESC/POS.
 El flujo del mostrador es:
 
 1. Se carga el servicio en el Formulario de Google, como siempre.
-2. Se abre `/imprimir` en la PC del local.
+2. Se abre `/admin` en la PC del local (la primera vez pide la clave).
 3. Se tipea la patente y se aprieta **Generar ticket**.
 4. **Imprimir ticket** abre el dialogo del navegador. Enter.
 
@@ -109,8 +109,8 @@ parametro `?ancho=`:
 
 | Rollo | Area util | QR impreso | URL |
 | --- | --- | --- | --- |
-| 58 mm | 48 mm | 34 mm | `/imprimir/AB123CD?ancho=58` |
-| 80 mm | 72 mm | 46 mm | `/imprimir/AB123CD?ancho=80` |
+| 58 mm | 48 mm | 34 mm | `/admin/ticket/AB123CD?ancho=58` |
+| 80 mm | 72 mm | 46 mm | `/admin/ticket/AB123CD?ancho=80` |
 
 El area util es menor que el papel porque el cabezal no imprime hasta el borde.
 Las medidas estan en `src/lib/ticket.ts`; si la impresora del local imprime un
@@ -124,7 +124,7 @@ mismo archivo.
 Agregando `?auto=1` el dialogo de impresion se abre solo al cargar la pagina:
 
 ```
-/imprimir/AB123CD?ancho=58&auto=1
+/admin/ticket/AB123CD?ancho=58&auto=1
 ```
 
 Sirve para dejar un acceso directo en el escritorio de la PC del mostrador.
@@ -132,7 +132,7 @@ Sirve para dejar un acceso directo en el escritorio de la PC del mostrador.
 ## Como esta hecho
 
 **La regla `@page` se inyecta desde el servidor**, en
-`src/app/imprimir/[patente]/page.tsx`, porque el tamano depende del rollo
+`src/app/admin/ticket/[patente]/page.tsx`, porque el tamano depende del rollo
 elegido:
 
 ```css

@@ -40,12 +40,15 @@ compila, no se toca y no forma parte del build**. Ver `docs/MIGRACION.md`.
 ```
 src/
   app/                         rutas (App Router)
-    page.tsx                   inicio: buscador + contacto + mapa
-    patente/[patente]/page.tsx detalle publico de un vehiculo
-    imprimir/page.tsx          panel del mostrador
-    imprimir/[patente]/page.tsx ticket termico con QR
+    page.tsx                   inicio: buscador + turno + contacto + mapa
+    patente/[patente]/         detalle publico de un vehiculo (+ loading)
+    admin/page.tsx             panel del mostrador        [requiere clave]
+    admin/ticket/[patente]/    ticket termico con QR      [requiere clave]
+    admin/ingresar/page.tsx    pantalla de clave
     api/patente/[patente]/     JSON (reemplaza el viejo GET /car/detail?id=)
-    globals.css                tema Tailwind + reglas @media print
+    api/admin/                 abrir y cerrar sesion del local
+    globals.css                tema Tailwind + esqueletos + @media print
+  middleware.ts                cierra /admin detras de la clave
   components/                  componentes de UI
   lib/
     sheets.ts                  descarga y parseo de la planilla  (servidor)
@@ -54,6 +57,7 @@ src/
     formato.ts                 fechas y numeros es-AR            (puro)
     qr.ts                      generacion del QR                 (servidor)
     ticket.ts                  medidas del papel termico         (puro)
+    admin.ts                   clave y sesion del local          (puro)
     config.ts                  entorno y datos del local
 docs/                          documentacion detallada
 legacy/dotnet-cartracking/     el sistema viejo, congelado
@@ -79,6 +83,16 @@ cambio.
 **Nunca se expone el precio.** La columna J de la planilla (`PRECIO TOTAL`) es
 informacion interna del taller. No se manda al cliente ni por la pagina ni por
 la API. Si agregas un campo nuevo, revisa que no la arrastre.
+
+**Todo lo administrativo va bajo `/admin`.** El sitio publico es de solo
+lectura y no debe enlazar a `/admin` desde ningun lado. Si agregas una pantalla
+para el local, va bajo `/admin` y el middleware la protege sola. Ver
+`docs/ACCESO.md`.
+
+**Las paginas que consultan la planilla llevan `loading.tsx`.** La primera
+consulta de una patente baja ~2,5 MB y tarda unos segundos; sin esqueleto la
+pantalla se queda en blanco. Usa las piezas de `src/components/Esqueleto.tsx` y
+dale la forma del contenido real, no un spinner.
 
 **Los datos de la planilla vienen sucios.** Se carga a mano desde un
 formulario: hay patentes con espacios y apostrofes, kilometrajes que dicen

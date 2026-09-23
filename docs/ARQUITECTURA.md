@@ -86,14 +86,44 @@ depender de un webhook desde Google.
 
 | Ruta | Tipo | Que hace |
 | --- | --- | --- |
-| `/` | estatica | Buscador, contacto, mapa |
-| `/patente/[patente]` | ISR 5 min | Detalle publico del vehiculo |
-| `/imprimir` | estatica | Panel del mostrador |
-| `/imprimir/[patente]` | ISR 5 min | Ticket termico con QR |
-| `/api/patente/[patente]` | dinamica | JSON, reemplaza `GET /car/detail?id=` |
+| Ruta | Acceso | Tipo | Que hace |
+| --- | --- | --- | --- |
+| `/` | publico | estatica | Buscador, turno, contacto, mapa |
+| `/patente/[patente]` | publico | ISR 5 min | Detalle del vehiculo |
+| `/api/patente/[patente]` | publico | dinamica | JSON, reemplaza `GET /car/detail?id=` |
+| `/admin` | clave | estatica | Panel del mostrador |
+| `/admin/ticket/[patente]` | clave | ISR 5 min | Ticket termico con QR |
+| `/admin/ingresar` | publico | dinamica | Pantalla de clave |
 
 Las paginas de patente llevan `robots: { index: false }`: son datos del cliente,
-no contenido para buscadores.
+no contenido para buscadores. `/admin` ademas esta bloqueado en `robots.txt`.
+
+## Los dos publicos
+
+`src/middleware.ts` cierra todo `/admin/*` detras de una clave compartida; el
+resto del sitio es publico y de solo lectura. La separacion, el porque de cada
+decision y los limites de esa proteccion estan en `ACCESO.md`.
+
+Vale la pena repetir una cosa: el cliente es de solo lectura **porque la
+aplicacion no tiene ningun camino de escritura**, no porque un chequeo de
+permisos lo frene. La carga sigue siendo por el Formulario de Google.
+
+## Pantallas de carga
+
+La primera consulta de una patente tiene que bajar la planilla entera de Google
+(~2,5 MB) y puede tardar unos segundos. Cada ruta que consulta datos tiene su
+`loading.tsx`: Next lo muestra apenas el usuario navega, mientras el Server
+Component resuelve.
+
+Son esqueletos con la forma del contenido real, no spinners. Dos razones: la
+pagina no salta cuando llegan los datos, porque el espacio ya estaba reservado,
+y el usuario ve que es lo que se esta cargando. Las piezas estan en
+`src/components/Esqueleto.tsx` y la animacion en `globals.css`, que la desactiva
+si el sistema pide `prefers-reduced-motion`.
+
+Una vez cacheada la pagina por ISR, la respuesta es inmediata y el esqueleto ni
+se llega a ver: esta para la primera visita de cada patente y para cuando el
+cache vencio.
 
 ## El QR
 

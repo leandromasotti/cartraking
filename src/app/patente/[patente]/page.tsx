@@ -57,22 +57,13 @@ export default async function DetalleDePatente({ params }: Props) {
           <PanelProximoCambio proximo={proximo} />
 
           <section>
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h2 className="text-xl font-bold">
-                Historial de servicios
-                <span className="ml-2 text-sm font-normal text-carbon-400">
-                  ({vehiculo.servicios.length}{' '}
-                  {vehiculo.servicios.length === 1 ? 'servicio' : 'servicios'})
-                </span>
-              </h2>
-
-              <Link
-                href={`/imprimir/${patente}`}
-                className="no-imprimir rounded-lg border border-carbon-600 px-3 py-2 text-xs font-semibold text-carbon-200 transition hover:border-marca-azul hover:text-white"
-              >
-                Imprimir ticket con QR
-              </Link>
-            </div>
+            <h2 className="text-xl font-bold">
+              Historial de servicios
+              <span className="ml-2 text-sm font-normal text-carbon-400">
+                ({vehiculo.servicios.length}{' '}
+                {vehiculo.servicios.length === 1 ? 'servicio' : 'servicios'})
+              </span>
+            </h2>
 
             <div className="mt-4">
               <HistorialDeServicios servicios={vehiculo.servicios} />
