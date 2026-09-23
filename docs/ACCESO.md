@@ -83,6 +83,25 @@ Detalles que importan:
 - **Sin `CLAVE_ADMIN` configurada, `/admin` queda cerrado para todos** y la
   pantalla de ingreso lo dice explicitamente. Nunca queda abierto por omision.
 
+## Probar el ingreso con curl
+
+La cookie sale con el flag `Secure` en produccion, y **curl no guarda ni manda
+cookies `Secure` sobre HTTP plano**. Si probas `next start` en localhost con
+`curl -c/-b`, el ingreso va a parecer roto: el login devuelve 303 con su
+`set-cookie`, pero el pedido siguiente a `/admin` vuelve a redirigir.
+
+No es un problema de la aplicacion. Los navegadores tratan `http://localhost`
+como contexto seguro, asi que desde el navegador funciona bien. Para probarlo
+con curl, mandale la cookie a mano:
+
+```bash
+TOKEN=$(curl -s -o /dev/null -D - -X POST localhost:3000/api/admin/ingresar   --data-urlencode "clave=LACLAVE" --data-urlencode "destino=/admin"   | sed -n 's/.*dl_admin=\([a-f0-9]*\).*//p')
+curl -s -o /dev/null -w '%{http_code}
+' -H "Cookie: dl_admin=$TOKEN" localhost:3000/admin
+```
+
+En `npm run dev` no pasa: ahi la cookie va sin `Secure`.
+
 ## Lo que esta proteccion no es
 
 Es una cerradura para que un cliente curioso no llegue al panel de impresion,

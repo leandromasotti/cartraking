@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { BuscadorDePatente } from '@/components/BuscadorDePatente';
 import { HistorialDeServicios } from '@/components/HistorialDeServicios';
 import { PanelProximoCambio } from '@/components/PanelProximoCambio';
 import { LOCAL, linkWhatsApp } from '@/lib/config';
@@ -88,13 +87,6 @@ export default async function DetalleDePatente({ params }: Props) {
           </section>
         </>
       )}
-
-      <section className="no-imprimir rounded-2xl border border-carbon-700 bg-carbon-900/70 p-5 sm:p-6">
-        <h2 className="text-lg font-bold">Consultar otra patente</h2>
-        <div className="mt-4">
-          <BuscadorDePatente textoBoton="Buscar" />
-        </div>
-      </section>
     </div>
   );
 }
@@ -105,7 +97,11 @@ function SinResultados({ patente }: { patente: string }) {
       <h2 className="text-xl font-bold">No encontramos servicios para {formatearPatente(patente)}</h2>
       <p className="mt-2 max-w-prose text-sm text-carbon-200">
         Puede ser que la patente este escrita distinto en nuestro registro, o que el vehiculo
-        todavia no haya pasado por el taller. Revisa que este bien escrita o consultanos.
+        todavia no haya pasado por el taller.{' '}
+        <Link href="/" className="text-marca-azul-claro underline">
+          Proba escribirla de nuevo
+        </Link>{' '}
+        o consultanos.
       </p>
       <a
         href={linkWhatsApp(
